@@ -7,6 +7,7 @@ import com.com.github.lucasbandeira.msagent.model.dto.AgentResponseDTO;
 import com.com.github.lucasbandeira.msagent.service.AgentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,14 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/agent")
+@Slf4j
 public class AgentController implements UriLocator {
 
     private final AgentService agentService;
 
     @GetMapping("/status")
-    public String status(){
+    public String status() {
+        log.info("Getting status");
         return "Ok!";
     }
 
