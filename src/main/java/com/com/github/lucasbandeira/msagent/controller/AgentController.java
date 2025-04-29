@@ -2,9 +2,11 @@ package com.com.github.lucasbandeira.msagent.controller;
 
 import com.com.github.lucasbandeira.msagent.controller.uriresolver.UriLocator;
 import com.com.github.lucasbandeira.msagent.model.Agent;
+import com.com.github.lucasbandeira.msagent.model.HeroResponseDTO;
 import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDto;
 import com.com.github.lucasbandeira.msagent.model.dto.AgentResponseDTO;
 import com.com.github.lucasbandeira.msagent.service.AgentService;
+import com.com.github.lucasbandeira.msagent.service.HeroService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class AgentController implements UriLocator {
 
     private final AgentService agentService;
+    private final HeroService heroService;
 
     @GetMapping("/status")
     public String status(){
@@ -48,6 +51,12 @@ public class AgentController implements UriLocator {
     public ResponseEntity<Void>updateAgent(@PathVariable UUID id, @RequestBody AgentRequestDto agentRequestDto ){
         agentService.updateAgent(id,agentRequestDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping(value = "/hero",params = "hero-code")
+    public ResponseEntity<HeroResponseDTO>heroSituationCheck( @RequestParam("hero-code")String heroCode){
+        HeroResponseDTO hero = heroService.getHeroStatus(heroCode);
+        return ResponseEntity.status(HttpStatus.OK).body(hero);
     }
 
 
