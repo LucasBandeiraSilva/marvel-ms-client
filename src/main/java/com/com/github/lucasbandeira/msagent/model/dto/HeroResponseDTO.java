@@ -1,12 +1,10 @@
-package com.com.github.lucasbandeira.msagent.model;
+package com.com.github.lucasbandeira.msagent.model.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@Builder
 public class HeroResponseDTO {
 
     private String heroCode;

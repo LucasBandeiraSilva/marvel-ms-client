@@ -2,7 +2,7 @@ package com.com.github.lucasbandeira.msagent.controller;
 
 import com.com.github.lucasbandeira.msagent.controller.uriresolver.UriLocator;
 import com.com.github.lucasbandeira.msagent.model.Agent;
-import com.com.github.lucasbandeira.msagent.model.HeroResponseDTO;
+import com.com.github.lucasbandeira.msagent.model.dto.HeroResponseDTO;
 import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDto;
 import com.com.github.lucasbandeira.msagent.model.dto.AgentResponseDTO;
 import com.com.github.lucasbandeira.msagent.service.AgentService;

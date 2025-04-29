@@ -1,6 +1,6 @@
 package com.com.github.lucasbandeira.msagent.infra;
 
-import com.com.github.lucasbandeira.msagent.model.HeroResponseDTO;
+import com.com.github.lucasbandeira.msagent.model.dto.HeroResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
