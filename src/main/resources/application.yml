@@ -5,6 +5,14 @@ spring:
     url: jdbc:h2:mem:agent_db
     driver-class-name: org.h2.Driver
     username: sa
+
+  rabbitmq:
+    port: 5672
+    username: guest
+    password: guest
+    host: localhost
+
+
   h2:
     console:
       enabled: true
@@ -20,3 +28,9 @@ eureka:
       default-zone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+
+mq:
+  queues:
+    hero-registration: hero-registration

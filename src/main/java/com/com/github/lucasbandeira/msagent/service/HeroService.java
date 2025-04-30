@@ -1,7 +1,7 @@
 package com.com.github.lucasbandeira.msagent.service;
 
 import com.com.github.lucasbandeira.msagent.exception.HeroNotFoundException;
-import com.com.github.lucasbandeira.msagent.infra.HeroesResourceClient;
+import com.com.github.lucasbandeira.msagent.infra.clients.HeroesResourceClient;
 import com.com.github.lucasbandeira.msagent.model.dto.HeroResponseDTO;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;

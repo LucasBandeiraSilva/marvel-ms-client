@@ -1,4 +1,4 @@
-package com.com.github.lucasbandeira.msagent.infra;
+package com.com.github.lucasbandeira.msagent.infra.clients;
 
 import com.com.github.lucasbandeira.msagent.model.dto.HeroResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
