@@ -1,7 +1,7 @@
 package com.com.github.lucasbandeira.msagent.service;
 
 import com.com.github.lucasbandeira.msagent.model.Agent;
-import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDto;
+import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDTO;
 import com.com.github.lucasbandeira.msagent.repository.AgentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class AgentService {
         agentRepository.delete(agent);
     }
 
-    public Optional <Agent> updateAgent( UUID id, AgentRequestDto agentRequestDto ) {
+    public Optional <Agent> updateAgent( UUID id, AgentRequestDTO agentRequestDto ) {
         return agentRepository.findById(id).map(existingAgent -> {
             Agent agent = Agent.fromDto(agentRequestDto);
             agent.setId(existingAgent.getId());

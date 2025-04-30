@@ -1,5 +1,6 @@
 package com.com.github.lucasbandeira.msagent.infra.mqueue;
 
+import com.com.github.lucasbandeira.msagent.model.dto.HeroAgentRequestDTO;
 import com.com.github.lucasbandeira.msagent.model.dto.HeroRequestDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,15 +16,15 @@ public class RequestHeroRegistrationPublisher {
     private final RabbitTemplate rabbitTemplate;
     private final Queue heroRegistrationQueue;
 
-    public void RegisterHero( HeroRequestDTO heroRequestDTO )throws JsonProcessingException{
-        var json = convertIntoJson(heroRequestDTO);
+    public void RegisterHero( HeroAgentRequestDTO heroAgentRequestDTO )throws JsonProcessingException{
+        var json = convertIntoJson(heroAgentRequestDTO);
         rabbitTemplate.convertAndSend(heroRegistrationQueue.getName(),json);
     }
 
-    private String convertIntoJson(HeroRequestDTO heroRequestDTO) throws JsonProcessingException {
+    private String convertIntoJson(HeroAgentRequestDTO heroAgentRequestDTO) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
-        var json = mapper.writeValueAsString(heroRequestDTO);
+        var json = mapper.writeValueAsString(heroAgentRequestDTO);
         return json;
 
     }
