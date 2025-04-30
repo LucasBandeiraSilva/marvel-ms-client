@@ -2,7 +2,7 @@ package com.com.github.lucasbandeira.msagent.controller;
 
 import com.com.github.lucasbandeira.msagent.controller.uriresolver.UriLocator;
 import com.com.github.lucasbandeira.msagent.model.Agent;
-import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDto;
+import com.com.github.lucasbandeira.msagent.model.dto.AgentRequestDTO;
 import com.com.github.lucasbandeira.msagent.model.dto.AgentResponseDTO;
 import com.com.github.lucasbandeira.msagent.service.AgentService;
 import jakarta.validation.Valid;
@@ -29,7 +29,7 @@ public class AgentController implements UriLocator {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveAgent( @RequestBody @Valid AgentRequestDto agentRequestDto ){
+    public ResponseEntity<Void> saveAgent( @RequestBody @Valid AgentRequestDTO agentRequestDto ){
         var agent = Agent.fromDto(agentRequestDto);
         agentService.save(agent);
         return ResponseEntity.created(generateHeaderLocation(agent.getId())).build();
@@ -48,10 +48,9 @@ public class AgentController implements UriLocator {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void>updateAgent(@PathVariable UUID id, @RequestBody AgentRequestDto agentRequestDto ){
+    public ResponseEntity<Void>updateAgent(@PathVariable UUID id, @RequestBody AgentRequestDTO agentRequestDto ){
         agentService.updateAgent(id,agentRequestDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 
 }
