@@ -11,7 +11,5 @@ public record AgentRequestDTO(
         @Column(unique = true)
         String agentCode,
         @NotBlank(message = "The name must not be null or blank!")
-        String name,
-        @NotNull(message = "The 'active' Field must not be null")
-        boolean active) {
+        String name) {
 }

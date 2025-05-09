@@ -9,10 +9,16 @@ import org.springframework.stereotype.Component;
 public class MQConfig {
 
     @Value("${mq.queues.hero-registration}")
-    private String queueName;
+    private String registrationQueue;
+
+    @Value("${mq.queues.hero-update}")
+    private String updateQueue;
 
     @Bean
     public Queue heroRegistrationQueue(){
-        return new Queue(queueName,true);
+        return new Queue(registrationQueue,true);
     }
+
+    @Bean
+    public Queue heroUpdateQueue(){return new Queue(updateQueue,true);}
 }
