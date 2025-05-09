@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/agent/hero")
@@ -24,6 +27,16 @@ public class AgentHeroController {
         return ResponseEntity.status(HttpStatus.OK).body(hero);
     }
 
+    @GetMapping("/by-agent/{agentCode}")
+    public ResponseEntity<List<HeroResponseDTO>> getHeroesByAgent(@PathVariable String agentCode){
+        return ResponseEntity.status(HttpStatus.OK).body(heroService.getHeroesByAgent(agentCode));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<HeroResponseDTO>>getAllHeroes(){
+        return ResponseEntity.status(HttpStatus.OK).body(heroService.findAll());
+    }
+
     @PostMapping("/register-hero")
     public ResponseEntity registerHero(@RequestBody HeroAgentRequestDTO heroAgentRequestDTO){
         try{
@@ -32,5 +45,21 @@ public class AgentHeroController {
         }catch (HeroRegistrationException e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
+    }
+
+    @PutMapping("/{heroCode}")
+    public ResponseEntity updateHero(@PathVariable String heroCode, @RequestBody HeroRequestDTO heroRequestDTO){
+        try{
+        HeroRegistrationProtocol heroRegistrationProtocol = heroService.updateHero(heroCode,heroRequestDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(heroRegistrationProtocol);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void>deleteHero( @PathVariable UUID id ){
+        heroService.deleteHero(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
